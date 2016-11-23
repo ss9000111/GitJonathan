@@ -40,27 +40,6 @@ int check_course(string cours) {
     return -1;
 }
 
-void load_course() {
-    int i = 0;
-    ifstream fileIn("courses.txt");
-    string line;
-    if (!fileIn) {
-        cout << "File couldn't be open." << endl;
-    } else {
-        while (!fileIn.eof()) {
-            getline(fileIn, line);
-            course.course_names.push_back(line);
-            getline(fileIn, line);
-            course.course_nums.push_back(line);
-            getline(fileIn, line);
-            course.credit_hours.push_back(stoi(line));
-            getline(fileIn, line);
-            course.course_desc.push_back(line);
-        }
-    }
-    fileIn.close();
-}
-
 class UserType {
 protected:
     string username;
@@ -151,9 +130,11 @@ void Faculty::set_uname() {
 }
 
 void Faculty::menu() {
+    system("cls");
     int choice = 0;
     cout << "Welcome " << get_fname() << ", to Elite University" << endl;
     while (choice != 3) {
+        system("cls");
         cout << "Choose an operation" << endl <<
                 "1. Salary" << endl <<
                 "2. Enrollment Summary" << endl <<
@@ -179,11 +160,15 @@ void Faculty::operation(int choice) {
 }
 
 void Faculty::saLary() {
-
+    string pause;
+    cout << "Press any alpha numeric key followed by enter to continue...";
+    cin >> pause;
 }
 
 void Faculty::enrollSummary() {
-
+    string pause;
+    cout << "Press any alpha numeric key followed by enter to continue...";
+    cin >> pause;
 }
 
 class Teacher : public UserType {
@@ -192,7 +177,6 @@ private:
     vector<string> schedule;
 public:
     Teacher(string fname, string mname, string lname);
-    void set_uname();
     void menu();
     void operation(int choice);
     void courseEnrollment();
@@ -204,13 +188,12 @@ Teacher::Teacher(string fname, string mname, string lname) : UserType(fname, mna
     set_uname();
 }
 
-void Teacher::set_uname() {
-}
-
 void Teacher::menu() {
+    system("cls");
     int choice = 0;
     cout << "Welcome " << get_fname() << ", to Elite University" << endl;
     while (choice != 4) {
+        system("cls");
         cout << "Choose an operation" << endl <<
                 "1. Course Enrollment" << endl <<
                 "2. Salary" << endl <<
@@ -242,7 +225,7 @@ void Teacher::operation(int choice) {
 void Teacher::courseEnrollment() {
     system("cls");
     int i;
-    string cours;
+    string cours, pause;
     cout << "What courses are you teaching this semester:" << endl <<
             "Enter the course number or if you don't know enter 'list' for an "
             "list of courses:" << endl;
@@ -259,12 +242,14 @@ void Teacher::courseEnrollment() {
             cout << "Not an course offered in the Electrical and Computer "
                 "Engineering Department." << endl;
     }
+    cout << "Press any alpha numeric key followed by enter to continue...";
+    cin >> pause;
 }
 
 void Teacher::saLary() {
-}
-
-void Teacher::enrollSummary() {
+    string pause;
+    cout << "Press any alpha numeric key followed by enter to continue...";
+    cin >> pause;
 }
 
 class Student : public UserType {
@@ -274,12 +259,21 @@ private:
 public:
     Student(string fname, string mname, string lname);
     void set_uname();
+    void set_schedule(string cours);
+
+    vector<string> get_schedule() {
+        return schedule;
+    }
     void menu();
     void operation(int choice);
     void courseEnrollment();
     void tuiTion();
     void enrollSummary();
 };
+
+vector<Faculty> vecFac;
+vector<Teacher> vecTeach;
+vector<Student> vecStud;
 
 Student::Student(string fname, string mname, string lname) : UserType(fname, mname, lname) {
     set_uname();
@@ -301,10 +295,39 @@ void Student::set_uname() {
     username = tmp_uname;
 }
 
+void Student::set_schedule(string cours) {
+    schedule.push_back(cours);
+}
+
+void Teacher::enrollSummary() {
+    int i = 0, j = 0;
+    string cours, pause;
+    cout << "Enter a course number using the following format CC ####:";
+    fflush(stdin);
+    getline(cin, cours, '\n');
+    if (check_course(cours) != -1) {
+        while (i < vecStud.size()) {
+            j = 0;
+            while (j < vecStud[i].get_schedule().size()) {
+                if (vecStud[i].get_schedule()[j] == cours)
+                    cout << vecStud[i].get_fname() + " " + vecStud[i].get_lname() << endl;
+                j++;
+            }
+            i++;
+        }
+    } else {
+        cout << "Invalid course number" << endl;
+    }
+    cout << "Press any alpha numeric key followed by enter to continue...";
+    cin >> pause;
+}
+
 void Student::menu() {
+    system("cls");
     int choice = 0;
     cout << "Welcome " << get_fname() << ", to Elite University" << endl;
     while (choice != 4) {
+        system("cls");
         cout << "Choose an operation" << endl <<
                 "1. Course Enrollment" << endl <<
                 "2. Salary" << endl <<
@@ -336,7 +359,7 @@ void Student::operation(int choice) {
 void Student::courseEnrollment() {
     system("cls");
     int i;
-    string cours;
+    string cours, pause;
     cout << "What courses are you taking this semester:" << endl <<
             "Enter the course number or if you don't know enter 'list' for an "
             "list of courses:" << endl;
@@ -355,10 +378,13 @@ void Student::courseEnrollment() {
             cout << "Not an course offered in the Electrical and Computer "
                 "Engineering Department." << endl;
     }
+    cout << "Press any alpha numeric key followed by enter to continue...";
+    cin >> pause;
 }
 
 void Student::tuiTion() {
     system("cls");
+    string pause;
     int i, index, hours;
     double total = 0;
     for (i = 0; i < schedule.size(); i++) {
@@ -379,15 +405,15 @@ void Student::tuiTion() {
             "Student Act. Fee   @ $169.56 flate rate" << endl;
     tuition = total;
     cout << " Tuition total is $" << tuition << endl;
+    cout << "Press any alpha numeric key followed by enter to continue...";
+    cin >> pause;
 }
 
 void Student::enrollSummary() {
-
+    string pause;
+    cout << "Press any alpha numeric key followed by enter to continue...";
+    cin >> pause;
 }
-
-vector<Faculty> vecFac;
-vector<Teacher> vecTeach;
-vector<Student> vecStud;
 
 int check_acct(string username, string password) {
     int i = 0;
@@ -438,8 +464,57 @@ Student find_Studacct(string username, int index) {
         return vecStud[index];
 }
 
+void load_data(string filename) {
+    ifstream file(filename);
+    int index = rand() % 26;
+    string mname;
+    string fname;
+    string lname;
+    string cours;
+
+    if (!file) {
+        cout << "File couldn't be open." << endl;
+    } else {
+        while (!file.eof()) {
+            getline(file, fname);
+            getline(file, lname);
+            getline(file, cours);
+            mname = letters[index];
+            Student temp(fname, mname, lname);
+            temp.set_schedule(cours);
+            vecStud.push_back(temp);
+        }
+    }
+}
+
+void load_course(int argc, char** argv) {
+    int i = 0;
+    ifstream fileIn("courses.txt");
+    string line;
+    if (!fileIn) {
+        cout << "File couldn't be open." << endl;
+    } else {
+        while (!fileIn.eof()) {
+            getline(fileIn, line);
+            course.course_names.push_back(line);
+            getline(fileIn, line);
+            course.course_nums.push_back(line);
+            getline(fileIn, line);
+            course.credit_hours.push_back(stoi(line));
+            getline(fileIn, line);
+            course.course_desc.push_back(line);
+        }
+    }
+    fileIn.close();
+    if (argc == 3) {
+        if (argv[1][0] == '-' && argv[1][1] == 'f') {
+            load_data(argv[2]);
+        }
+    }
+}
+
 int main(int argc, char** argv) {
-    load_course();
+    load_course(argc, argv);
     srand(time(NULL));
     int choice, index;
     bool loginsuccess = false;
@@ -504,7 +579,7 @@ int main(int argc, char** argv) {
                     system("cls");
                     cout << "Your user name is:" << temp.get_uname() << endl;
                     temp.set_password(password);
-                    vecTeach.push_back(Teacher(firstname, midname, lastname));
+                    vecTeach.push_back(temp);
                     newuser = 'n';
                 } else if (choice == 3) {
                     cout << "Enter your first name:";
