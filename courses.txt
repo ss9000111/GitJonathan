@@ -1,0 +1,280 @@
+Introduction to Electrical and Computer Engineering
+ECE 1000
+2
+Introduction to the basic principles of electrical and computer engineering through hands-on activity. Course includes fundaments of programming using Matlab, applied to electrical and computer engineering problems.
+Introduction to Logic Systems
+ECE 1210
+3
+Introduces basic tools, methods and procedures to design combinational and sequential digital circuits and systems. Topics include number systems, Boolean algebra, logic minimization, circuit design, memory elements, and finite state machine design. Graded on A-F basis only.
+Circuit Theory I
+ECE 2100
+4
+DC circuit analysis, inductors and capacitors, first order response, AC circuit analysis, single-phase AC power. Graded on A-F basis only. Prerequisites: MATH 1700.
+Experimental Electrical Engineering I
+ECE 2110
+3
+Application of standard electronic test equipment to basic experimental tasks of measurement and characterization of electronic phenomena and devices. Corequisites: ENGINR 2100.
+Electrical and Computer Engineering Projects
+ECE 3110
+3
+Open-ended design projects which encourage innovative solutions to design and measurement problems. Students teams complete several projects from different areas. Both oral and written presentations emphasized. Graded on A-F basis only. Prerequisites: STAT 4710 and ECE 3210 and ECE 3410. Restricted to Electrical and Computer Engineering students only or instructor's consent.
+Microprocessor Engineering
+ECE 3210
+4
+Introduction to microprocessor architectures and programming; memory, memory management and cache organizations, bus configurations and timing implications; parallel I/O and serial communication interfaces. Prerequisites: ECE 1210 and INFOTC 1040 or CMP_SC 1050.
+Software Design in C and C++
+ECE 3220
+3
+Software/Hardware development for embedded systems, including memory, I/O and interrupts; an overview of C and C++, class structures in object oriented programming; software development with UML and testing and debugging strategies. Graded on A-F basis only. Prerequisites: ECE 3210.
+Algorithms and Software Design
+ECE 3230
+3
+Covers basic algorithms including: arithmetic operations, sorting, string processing, parsing, hashing, and tree and graph manipulations. The C language and UNIX operating system are used as vehicles for illustration and practice in use of the algorithms and in the application of software design techniques. Prerequisites: ECE 1210.
+Electronic Circuits and Signals I
+ECE 3410
+4
+Electron Devices, modeling and applications to basic electronic circuits, including RC amplifiers and power supplies. Corequisites: ECE 3810.
+Introduction to Power Engineering
+ECE 3470
+3
+Real and reactive power in single and three-phase ac circuits; magnetic circuits and transformers; energy conversion, DC machines, induction and synchronous machines; power transmission and distribution. Graded on A-F basis only. Corequisites: ECE 3810.
+Electromagnetic Fields
+ECE 3510
+3
+Elements of vector analysis, transmission line theory, electrostatics, magnetostatics, time varying fields and plane waves. Graded on A-F basis only. Prerequisites: PHYSCS 2760, MATH 4100.
+Semiconductors and Devices
+ECE 3610
+3
+Crystal structure; quantum aspects of energy, radiation and matter; quantum mechanics and energy bands in solids; electronic and optical properties of semiconductors; p-n junctions and diodes; bipolar and field-effect transistors. Prerequisites: ECE 3510.
+Circuit Theory II
+ECE 3810
+4
+Impulse and step responses, RLC circuits, classical differential equations solutions, complex plane stability, frequency and Bode Analysis, Resonance, Laplace transforms, two-port networks, mutual inductance and transformers. Graded on A-F basis only. Prerequisites: ECE 2100. Corequisites: MATH 4100.
+Signals and Linear Systems
+ECE 3830
+3
+Transform Analysis of Signals and Linear Systems. Laplace transforms, z-transforms, Fourier series and transforms. Prerequisites: ECE 3810.
+Topics in Electrical and Computer Engineering
+ECE 4001
+4
+Current and new technical developments in electrical engineering. Prerequisites: senior standing.
+Energy Systems and Resources
+ECE 4020
+3
+(same as NU_ENG 4315; cross-leveled with ECE 7020, NU_ENG 7315). Analysis of present energy usage in Missouri, USA and the world, evaluation of emerging energy technologies and trends for the future. Economics and environmental impact of the developed technologies. Prerequisites: ENGINR 2300.
+Introduction to Nuclear Reactor Engineering
+ECE 4030
+3
+(same as NU_ENG 4346; cross-leveled with ECE 7030, NU_ENG 7346). Engineering principles of nuclear power systems, primarily for the production of electrical energy. Prerequisites: ENGINR 1200, ENGINR 2300.
+Introduction to Nuclear Physics
+ECE 4040
+3
+(cross-leveled with ECE 7040). Introduction of Quantum mechanics for non-physics majors. Course topics include nuclear properties; alpha, beta and gamma radioactive decay; and nuclear reactions. Graded on A-F basis only. Prerequisites: senior standing or graduate standing in engineering or equivalent mathematical preparation.
+Problems in Electrical and Computer Engineering
+ECE 4085
+3
+Analytical or experimental problems pertaining to electric circuits, machines, fields or electronics. Recommended: 12 hours Electrical and Computer Engineering credit or instructor's consent.
+Solid State Area Laboratory
+ECE 4150
+1
+(cross-leveled with ECE 7150). Laboratory experiments involved with solid state theory and integrated circuit fabrication and testing. Prerequisites: ECE 4650 and ECE 4670.
+Control Systems Laboratory
+ECE 4170
+1
+(cross-leveled with ECE 4170). Experiments in computer process control and industrial automation; automated process modeling; control algorithm design; control simulation; direct digital real-time control; transducers; computer interfacing; industrial control mechanisms; Programmable Logic Controllers. Prerequisites: ECE 4310, ECE 3210, ECE 3110.
+Real Time Embedded Computing
+ECE 4220
+3
+(cross-leveled with ECE 7220). Embedded systems development with real time constraints including RTOS, task management and synchronization, real time scheduling algorithms, deadlocks, performance analysis and optimization, interfacing to external devices, and device drivers. Graded on A-F basis only. Prerequisites: ECE 3220.
+VHDL and Programmable Logic Devices
+ECE 4250
+4
+(cross-leveled with ECE 4250). Design techniques including module definition, functional partitioning, hardware design language descriptions and microprogramming; design examples include arithmetic units, programmable controllers, and microprocessors. Prerequisites: ECE 3210.
+Computer Organization
+ECE 4270
+4
+(cross-leveled with ECE 7270). Advanced computer architectures and programming; memory, memory management and cache organizations, parallel processing, graphical processor units for general programming. Prerequisites: ECE 3210 and ECE 4220.
+Network Systems Architecture
+ECE 4280
+4
+(same as CMP_SC 4280; cross-leveled with ECE 7280, CMP_SC 7280). The course covers network systems interconnects and switch fabrics, network considerations: and relevant networking applications at the network, transport and application layer. Graded on A-F basis only. Prerequisites: ECE 3210, ECE 3220.
+Feedback Control Systems
+ECE 4310
+3
+(same as BIOL_EN 4310, MAE 4750; cross-leveled with BIOL_EN 7310, ECE 7310, MAE 7750). System modeling and time and frequency response, closed loop control, stability, continuous system design, introduction to discrete time control, software and hardware experiments on compensator design and PID control. Graded on A-F basis only. Prerequisites: MATH 4100.
+Introduction to Mechatronics and Robotic Vision
+ECE 4330
+4
+(cross-leveled with ECE 7330). Covers 1) mechatronic systems; 2) the mathematical tools used to model industrial and mobile robots; and 3) vision sensors, their underlying models and algorithms that allow us to control and interact with robots. Prerequisites: ECE 3220 or ECE 4220. Recommended: a C/C++ languages.
+Building Intelligent Robots
+ECE 4340
+4
+(same as CMP_SC 4730; cross-leveled with ECE 7340, CMP_SC 7740). Covers the design and development of intelligent machines, emphasizing topics related to sensor-based control of mobile robots. Includes mechanics and motor control, sensor characterization, reactive behaviors and control architectures. Prerequisites: junior standing. Recommended: programming experience in one of the following programming languages: Basic , C, C++, or Java.
+Programmable Logic Controllers
+ECE 4350
+4
+(cross-leveled with ECE 7350). Hardware and software aspects of PLC's; computer/PLC Communications; developing ladder logic programs; interfacing I/O devices, including sensors, to the PLC; labeling and documentation; utilizing analog capabilities; applications; developing Supervisory Control and Data Acquisitions (SCADA) applications. Prerequisites: junior standing.
+Automatic Control System Design
+ECE 4370
+3
+(cross-leveled with ECE 7370). Techniques for feedback system design and analysis; compensation using root locus and frequency-domain methods; state-variable design methods; techniques for nonlinear systems analysis and design; sample-data control systems. Prerequisites: ECE 4310.
+Computer Process Control
+ECE 4390
+3
+(cross-leveled with ECE 7390). Role of digital computer in process control; digital controller design; computer interfacing; transducers; programmable logic controllers; process modeling; introduction to robotics. Prerequisites: ECE 4310 and ECE 3210.
+Power Electronics I
+ECE 4410
+4
+(cross-leveled with ECE 7410). Power electronic device characteristics, important circuit and component concepts, loss mechanisms and thermal analysis, phase controlled rectifiers, dc-dc converters, and dc-ac inverters. Includes laboratory projects. Prerequisites: ECE 3410.
+Electronic Circuits and Signals II
+ECE 4430
+3
+(cross-leveled with ECE 7430). Advanced study of electronic devices including frequency response of amplifiers, nonlinear effects in transistor amplifiers, oscillators, and feedback amplifiers. Prerequisites: ECE 3830 and ECE 3410.
+Power Systems Analysis
+ECE 4440
+3
+(cross-leveled with ECE 7440). Selected topics related to modern power system analysis. Single and three-phase balanced power; Transformers and the per unit concept; Properties and analysis of transmission lines; power flow analysis; symmetrical and asymmetrical faults; system stability; power distribution; use of Powerworld software. Graded on A-F basis only. Prerequisites: ECE 3810 and MATH 4100 or instructor's consent.
+Amplifier Analysis and Design
+ECE 4450
+3
+(cross-leveled with ECE 7450). Design of electronic networks with application to instrumentation, control and communications systems. Practical specifications and problems in design. Lectures and projects. Prerequisites: ECE 4430.
+Energy and Machines
+ECE 4460
+3
+(cross-leveled with ECE 7460). Theory and applications of electric machines. Performance analysis of AC Synchronous, Induction and DC machines with emphasis on modern efficiency improvements. Fundamentals of electronic speed controls. Prerequisites: ECE 3510.
+Energy and Machines Lab
+ECE 4465
+1
+Electrical safety, magnetic and poly-phase circuits, synchronous and induction machines laboratory. Prerequisites or Corequisites: ECE 4460.
+Sustainable Electrical Energy Resources
+ECE 4470
+3
+(cross-leveled with ECE 7470). Analysis of renewable electrical energy resources from both the utility and distributed resource perspective. Covers safety, metering and power quality issues associated with coupling distributed resources to the utility grid. Prerequisites: ECE 2100 or ENGINR 2100.
+Test and Evaluation of Electrochemical Devices
+ECE 4480
+3
+(cross-leveled with ECE 7480). This combined undergraduate/graduate introductory course will introduce the student to the testing and evaluation of electrochemical cells and batteries. Included with an introduction to battery technology is material emphasizing test safety and operational hazards. Graded on A-F basis only. Prerequisites: senior standing in Electrical Engineering or major with equivalent mathematical preparation. Recommended: at least 3 college credit hours of chemistry.
+Pulsed Power Engineering
+ECE 4510
+3
+(cross-leveled with ECE 7510). Concepts of energy generation and storage systems used in pulse power engineering, high power opening and closing switches, high voltage engineering, grounding and shielding, high voltage safety. Prerequisites: ECE 3510.
+Photonics
+ECE 4530
+3
+(cross-leveled with ECE 7530). Introduction to the physical principles and optical materials used in diagnostics, optical communications, semiconductor and solid state lasers, optical fiber transmissions, optical detectors, optical signal processing. Prerequisites: ECE 3510.
+Introduction to Plasmas
+ECE 4550
+3
+(same as NU_ENG 4375; cross-leveled with ECE 7550, NU_ENG 7375). Equations of plasma physics, interaction of waves and plasmas; plasma sheaths and oscillations; measurements and applications. Prerequisites: ECE 3510.
+Lasers and Their Applications
+ECE 4570
+3
+(same as NU_ENG 4382; cross-leveled with ECE 7570, NU_ENG 7382). An introductory course in lasers. The course treats the subject from both a conceptual viewpoint and from the application of Maxwell's equations, to develop the optical theory for lasers. The course includes approximately 10 classroom hours of laboratory work with lasers. Prerequisites: PHYSCS 2760 and MATH 4110.
+Computational Neuroscience
+ECE 4580
+4
+(same as BIO_SC 4580, BIOL_EN 4575; cross-leveled with ECE 7580, BIO_SC 7580, BIOL_EN 7575). Interdisciplinary course in biology and quantitative sciences with laboratory and modeling components. Explores basic computational and neurobiological concepts at the cellular and network level. Introduction to neuronal processing and experimental methods in neurobiology; modeling of neurons and neuron-networks. Graded on A-F basis only. Prerequisites: MATH 1500 or equivalent.
+Physical Electronics
+ECE 4610
+3
+(cross-leveled with ECE 7610). Introduction to physical principles of semiconductors and semiconductor devices; gas, solid state, and semiconductors lasers; electro-optics; plasma physics and gaseous electronics; materials interaction with electric and magnetic fields. Prerequisites: ECE 3510.
+Introduction to BioMEMS
+ECE 4620
+3
+(cross-leveled with ECE 7620). Study of BioMEMS devices and applications. Topics cover BioMEMS including overview of microfabrication techniques, common bioMEMS material, microfluidic principles, microfluidic devices, drug delivery, biomedical microdevices for neural implants, patch-clamping and single cell based analysis systems, microelectroporation, DNA microarrays, Plymerase Chain Reaction and biopolymers, chemical and gas sensors and biosensors. Graded on A-F basis only.
+Introduction to Optical Electronics
+ECE 4630
+3
+(cross-leveled with ECE 7640). Principles, devices and materials used to generate, modulate, and detect optical radiation. Review of important properties of light and semiconductors. Light-emitting diodes and lasers. Electro-optic modulation. Thermal and quantum detection. Emphasis on semiconductor-based devices and application to fiber-optical communications. Prerequisites: ECE 3610.
+MEMS Laboratory
+ECE 4640
+4
+(cross-leveled with ECE 7640). The main objective of this course is to provide hands-on skills for the interdisciplinary Microelectromechanical Systems (MEMS). It puts emphasis on the practical aspects of design, fabrication, test, and characterization of micro/nano devices and systems. Graded on A-F basis only. Prerequisites: PHYSCS 2760, CHEM 1320, or ECE 2100.
+Semiconductor Device Theory
+ECE 4650
+3
+(cross-leveled with ECE 7650). Band theory, equilibrium and non-equilibrium semiconductor electronics, junction theory, p-n junction devices, bipolar and field effect transistors including SPICE simulation. Prerequisites: ECE 3610.
+Digital image Processing
+ECE 4655
+3
+(same as CMP_SC 4650; cross-leveled with ECE 7655, CMP_SC 7650). This course provides fundamentals of digital image processing hardware and software including digital image acquisition, image display, image enhancement, image transforms and segmentation. Prerequisites: STAT 4710 and CMP_SC 2050 or instructor's consent.
+Microelectronic Fabrication
+ECE 4670
+4
+(cross-leveled with ECE 7670). Basic silicon integrated circuit fabrication processes, basic techniques of wafer processing, economics of fabrication and resulting devices properties, interdependence of process flow and device design. Accompanying laboratory. Prerequisites: ECE 3610.
+Digital Image Compression
+ECE 4675
+3
+(same as CMP_SC 4670; cross-leveled with ECE 7675, CMP_SC 7670). This course provides basic concepts and theorems in information theory, discrete cosine transform, discrete wavelet transform, quantizer design, bit allocation, and rate-distortion analysis and practical coding and communication system design, (such as Huffman coding, arithmetic coding, variable length coding, motion estimation, JPEG.) Graded on A-F basis only. Prerequisites: STAT 4710 or instructor's consent.
+Design and Simulation of VLSI Circuits
+ECE 4690
+4
+(cross-leveled with ECE 7690). Design of CMOS integrated circuits with emphasis on analog applications. Device models are developed for circuit simulation. Lecture and laboratory. Prerequisites: ECE 4670.
+Communications Systems
+ECE 4710
+3
+(cross-leveled with ECE 7710). Concepts of communication systems, signal analysis and power spectrum density, signal transmission and filtering, linear modulation, exponential modulation, sampling, baseband digital communication, modulated digital communication, spread spectrum communication. Prerequisites: ECE 3830.
+Introduction to Machine Learning and Pattern Recognition
+ECE 4720
+3
+(Same as CMP_SC 4720; cross-leveled with ECE 7720, CMP_SC 7720) This course provides foundation knowledge to the basic methods in machine learning and pattern recognition (MLPR). MLPR addresses the problems of programming computers to optimize certain performance criteria by using example data or expert knowledge and it has wide applications. Prerequisites: CMP_SC 2050 and STAT 4710 or instructors consent.
+Introduction to Wireless Communication System
+ECE 4730
+3
+(cross-leveled with ECE 7730). Principles of wireless communication analysis and design. Digital communication basics, cellular radio, wireless PCS communications, multiple access techniques, channel coding and equalization, and standards of digital cellular/PCS systems.
+Introduction to Digital Signal Processing
+ECE 4830
+4
+(cross-leveled with ECE 7830). Concepts, analytical tools, design techniques used in computer processing of signals; signal representation, sampling, discrete-time systems analysis, recursive and non-recursive filters, design/implementation, discrete Fourier transform. Prerequisites: ECE 2110, ECE 1210, ECE 3830.
+Image Processing 
+ECE 4850
+3
+(same as CMP_SC 4650; cross-leveled with ECE 7850, CMP_SC 7650). Fundamentals of digital image processing hardware and software including digital image acquisition, image display, image enhancement, image transforms and segmentation.
+Introduction to Computational Intelligence
+ECE 4870
+3
+(same as CMP_SC 4770; cross-leveled with ECE 7870, CMP_SC 7770). Introduction to the concepts, models, and algorithms for the development of intelligent systems from the standpoint of the computational paradigms of neural networks, fuzzy set theory and fuzzy logic, evolutionary computation and swarm optimization. Graded on A-F basis only. Recommended: some exposure to rigorous axiomatic mathematical development of a topic (as can be found in most senior/graduate level math or statistics courses) is needed to appreciate some of the development of the theory. Also, the ability to program (well) in some high level language is essential to perform the computer projects.
+Micro/Nano Systems
+ECE 4880
+3
+(cross-leveled with ECE 7880). Micro/nano systems covers various micro/nanotechnologies, micro sensors and actuators including digital light processors, accelerometers, gyroscopes, micro optical switches and components, micro speakers, RF switches, inertial/mechanical and acoustic M/NEMS and M/Nanofluidic systems. Major mechanisms/principles for micro/Nano devices and systems are also covered. The Micro/Nano Systems focuses on the miniaturization technologies that have important roles in materials, mechanical, and biomedical engineering practice. Graded on A-F basis only. Prerequisites: ECE 3610 or instructor's consent.
+Microwave Systems
+ECE 4910
+3
+(cross-leveled with ECE 7910). Theory and applications of transmission systems with emphasis on transmission lines at low and high frequencies. Prerequisites: ECE 3510.
+Microwave Engineering 
+ECE 4920
+3
+(cross-leveled with ECE 7920). Wave equation, plane wave propagation, transmission line theory, Smith Chart analysis, impedance transformers, waveguides modes, basic antenna theory, impedance matching and tuning, basic microstrip and stripline circuits.
+Intermediate Electromagnetics 
+ECE 4930
+4
+(cross-leveled with ECE 7930). Course covers transmission lines, waveguides, microstrip electromagnetic circuits, and radiating systems. Prerequisites: ECE 3510.
+Antenna Theory, Design and Laboratory 
+ECE 4940
+4
+(cross-leveled with ECE 7940). Introduction to antenna theory, design and laboratory. Emphasis on engineering aspects of antenna systems, transmitting and receiving antenna parameters, various antennas. Prerequisites: ECE 3510.
+Microwave Principles 
+ECE 4950
+4
+Maxwell's Equations, transmission lines, plane wave progagation and reflection, waveguides, resonant cavities, microwave devices and components, radiation, radio wave propagation. Lecture and laboratory. Prerequisites: ECE 3510 and ECE 3410.
+Senior Capstone Design 
+ECE 4970
+3
+Group Design Projects. Design methodology, project management, development of specifications, examination of alternatives, preparation of proposal. Lectures on safety, ethics, professionalism, and economics. Oral and written reports. Not for graduate credit. Prerequisites: ECE 3110 and senior standing. Restricted to Electrical and Computer Engineering students only or instructor's consent.
+Senior Capstone Design - WI
+ECE 4970W
+3
+Group Design Projects. Design methodology, project management, development of specifications, examination of alternatives, preparation of proposal. Lectures on safety, ethics, professionalism, and economics. Oral and written reports. Not for graduate credit. Prerequisites: ECE 3110 and senior standing. Restricted to Electrical and Computer Engineering students only or instructor's consent. 
+Senior Capstone Design II
+ECE 4980
+2
+(same as CMP_SC 4980). Completion of ECE 4970 design project. Design prototyping, testing, evaluation and preparation of documentation. Lectures on ethics, professionalism, safety, economic consideration. Oral and written reports. Not for graduate credit. Prerequisites: senior standing and ECE 4970.
+Undergraduate Research in Electrical Computer Engineering 
+ECE 4990
+3
+Supervised independent study or project in electrical or computer engineering, culminating in a written report. Prerequisites: Undergraduate Program Director's consent.
+Undergraduate Honors Research in Electrical Computer Engineering 
+ECE 4995
+3
+Independent investigation or project in electrical or computer engineering to be presented as an undergraduate honors thesis. Enrollment is limited to students participation in the Electrical and Computer Engineering Honors Program.
