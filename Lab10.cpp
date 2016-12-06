@@ -10,7 +10,7 @@
 #include <iostream>
 #include <string>
 #include <stdio.h>
-//#include <sys/mman.h>
+#include <sys/mman.h>
 #include <stdlib.h>
 #include <sys/types.h>
 #include <fcntl.h>
@@ -87,13 +87,13 @@ void mCMSG::printInfo() {
     cout << msg << endl;
     while (i < msg.length()) {
         cout << tran_msg[i] << " ";
-        //MorseCodeToLights(tran_msg[i]);
+        MorseCodeToLights(tran_msg[i]);
         i++;
     }
     cout << endl;
 }
 
-/*void mCMSG::MorseCodeToLights(string t_msg) {
+void mCMSG::MorseCodeToLights(string t_msg) {
     int fd, i = 0; // for the file descriptor of the special file we need to open.
     unsigned long *BasePtr; // base pointer, for the beginning of the memory page (mmap)
     unsigned long *PBDR, *PBDDR; // pointers for port B DR/DDR
@@ -139,7 +139,7 @@ void mCMSG::printInfo() {
         }
     }
     close(fd); // close the special file
-}*/
+}
 
 class MSGSt {
 public:
