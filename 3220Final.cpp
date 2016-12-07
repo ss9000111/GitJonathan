@@ -20,11 +20,11 @@ string letters = "abcdefghijklmnopqrstuvwxyz";
 
 class Course {
 public:
-    vector<string> course_names;    //course names vector
-    vector<string> course_nums;     //course numbers vector
-    vector<int> credit_hours;       //course credit hours vector
-    vector<string> course_desc;     //course descriptions vector
-    Course();                       //course constructor
+    vector<string> course_names;     //course names vector
+    vector<string> course_nums;      //course numbers vector
+    vector<int> credit_hours;        //course credit hours vector
+    vector<string> course_desc;      //course descriptions vector
+    Course();                        //course constructor
 };
 
 Course::Course() {                  //course constructor
