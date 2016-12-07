@@ -20,29 +20,29 @@ string letters = "abcdefghijklmnopqrstuvwxyz";
 
 class Course {
 public:
-    vector<string> course_names;
-    vector<string> course_nums;
-    vector<int> credit_hours;
-    vector<string> course_desc;
-    Course();
+    vector<string> course_names;    //course names vector
+    vector<string> course_nums;     //course numbers vector
+    vector<int> credit_hours;       //course credit hours vector
+    vector<string> course_desc;     //course descriptions vector
+    Course();                       //course constructor
 };
 
-Course::Course() {
+Course::Course() {                  //course constructor
 }
 
 Course course;
 
-int check_course(string cours) {
+int check_course(string cours) {        //checks to see if user's course number is in the actual list of course numbers
     int i;
-    for (i = 0; i < course.course_nums.size(); i++) {
+    for (i = 0; i < course.course_nums.size(); i++) {   //goes through all course numbers to check for match
         if (cours == course.course_nums[i]) {
-            return i;
+            return i;       //returns index of match
         }
     }
     return -1;
 }
 
-class UserType {
+class UserType {    //generic user class with name, username, and password
 protected:
     string username;
     string password;
@@ -50,37 +50,37 @@ protected:
     string mid_name;
     string last_name;
 public:
-    UserType();
-    UserType(string fname, string mname, string lname);
+    UserType();     //constructor
+    UserType(string fname, string mname, string lname);     //second constructor with parameters
 
-    string get_fname() {
+    string get_fname() {        //function to send first name
         return first_name;
     }
-    void set_fname(string fname);
+    void set_fname(string fname);      //function to set first name
 
-    string get_mname() {
+    string get_mname() {        //function to send middle name
         return mid_name;
     }
-    void set_mname(string mname);
+    void set_mname(string mname);       //function to set middle name
 
-    string get_lname() {
+    string get_lname() {        //function to send last name
         return last_name;
     }
-    void set_lname(string lname);
+    void set_lname(string lname);       //function to set last name
 
-    string get_uname() {
+    string get_uname() {        //function to send username
         return username;
     }
-    virtual void set_uname();
+    virtual void set_uname();       //function to set username
 
-    string get_password() {
+    string get_password() {     //function to send password
         return password;
     }
-    void set_password(string pw);
+    void set_password(string pw);   //function to set password
     virtual void menu();
 };
 
-UserType::UserType() {
+UserType::UserType() {      //constructor
     cout << "Enter your first name:";
     cin >> first_name;
     cout << "Enter your middle name:";
@@ -89,7 +89,7 @@ UserType::UserType() {
     cin >> last_name;
 }
 
-UserType::UserType(string fname, string mname, string lname) {
+UserType::UserType(string fname, string mname, string lname) {      //constructor with parameters
     first_name = fname;
     mid_name = mname;
     last_name = lname;
