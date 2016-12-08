@@ -281,7 +281,6 @@ public:
     void set_uname();
     void set_schedule(string cours);
 
-    vector<string> get_schedule() {
         return schedule;
     }
     void menu();
@@ -714,107 +713,107 @@ void load_course(int argc, char** argv) {
 }
 
 int main(int argc, char** argv) {
-    load_course(argc, argv);
-    srand(time(NULL));
-    int choice, index;
-    bool loginsuccess = false;
-    bool passwordsuccess = false;
-    string username, firstname, midname, lastname, password, psswrdcon;
-    char newuser = 'n', faculty = 'n', teacher = 'n', student = 'n';
-    while (!loginsuccess) {
-        cout << "Are you an new user?:" << endl;
-        cin >> newuser;
-        system("cls");
-        while (newuser == 'Y' || newuser == 'y' || newuser == 'N' || newuser == 'n') {
-            if (newuser == 'Y' || newuser == 'y') {
-                cout << "What type of user are you?\n"
+    load_course(argc, argv);        //calls function to load the list of courses
+    srand(time(NULL));              //Initializes random number generator for use in creating username
+    int choice, index;      
+    bool loginsuccess = false;      //sets login result to failure as default so that later loops run at least once
+    bool passwordsuccess = false;   //sets password result to failure as default so that later loops run at least once 
+    string username, firstname, midname, lastname, password, psswrdcon;     //define strings for names, username, and password
+    char newuser = 'n', faculty = 'n', teacher = 'n', student = 'n';        //sets answers to questions to no as default 
+    while (!loginsuccess) {         //loop for login screen. loops until successful login is achieved
+        cout << "Are you an new user? (y/n):" << endl;      //asks user to input whether they are a new user or not
+        cin >> newuser;     //reads in y/n response
+        system("cls");      //clears the screen
+        while (newuser == 'Y' || newuser == 'y' || newuser == 'N' || newuser == 'n') {      //loop checking for a new user y/n response. if you respond anything
+            if (newuser == 'Y' || newuser == 'y') {   //new user Y case                     //other than y, Y, n, or N, you will be looped back to the new user question
+                cout << "What type of user are you?\n"      //asks for type of user you are. your answer willdetermine what actions the program lets you perform
                         "1)Faculty\n"
                         "2)Teacher\n"
                         "3)Stdudent\n";
-                cin >> choice;
-                system("cls");
-                if (choice == 1) {
-                    cout << "Enter your first name:";
-                    cin >> firstname;
-                    cout << "Enter your middle name:";
-                    cin >> midname;
-                    cout << "Enter your last name:";
-                    cin >> lastname;
-                    while (!passwordsuccess) {
-                        cout << "Enter your password:";
-                        cin >> password;
-                        cout << "Re-Enter your password:";
-                        cin >> psswrdcon;
-                        if (password == psswrdcon) {
-                            passwordsuccess = true;
-                        } else
-                            cout << "Your password doesn't match. Try again" << endl;
+                cin >> choice;              //reads in user answer for type of user
+                system("cls");              //clears the screen to prepare for next screen
+                if (choice == 1) {          //Faculty user case
+                    cout << "Enter your first name:";       //asks for user first name
+                    cin >> firstname;       //reads in user first name input
+                    cout << "Enter your middle name:";      //asks for user middle name
+                    cin >> midname;         //reads in user middle name input
+                    cout << "Enter your last name:";        //asks for user last name
+                    cin >> lastname;        //reads in user last name input
+                    while (!passwordsuccess) {      //loop runs until successful password is achieved
+                        cout << "Enter your password:";     //asks user for password
+                        cin >> password;    //reads in user password
+                        cout << "Re-Enter your password:";  //asks for user to verify password
+                        cin >> psswrdcon;   //reads in user password again
+                        if (password == psswrdcon) {        //checks to see if user entered the same password each time, 
+                            passwordsuccess = true;         //therefore, setting the user's password to what they entered and allowing them to proceed
+                        } else          //case for incorrect entered password verification, causing this while to loop again
+                            cout << "Your password doesn't match. Try again" << endl;       //tells user their passwords did not match
                     }
-                    Faculty temp(firstname, midname, lastname);
-                    temp.set_uname();
-                    system("cls");
-                    cout << "Your user name is:" << temp.get_uname() << endl;
-                    temp.set_password(password);
-                    vecFac.push_back(temp);
-                    newuser = 'n';
-                } else if (choice == 2) {
-                    cout << "Enter your first name:";
-                    cin >> firstname;
-                    cout << "Enter your middle name:";
-                    cin >> midname;
-                    cout << "Enter your last name:";
-                    cin >> lastname;
-                    while (!passwordsuccess) {
-                        cout << "Enter your password:";
-                        cin >> password;
-                        cout << "Re-Enter your password:";
-                        cin >> psswrdcon;
-                        if (password == psswrdcon) {
-                            passwordsuccess = true;
-                        } else
-                            cout << "Your password doesn't match. Try again" << endl;
+                    Faculty temp(firstname, midname, lastname);     //once you set a password, a Faculty class gets constructed for the current user
+                    temp.set_uname();       //set user name method called to generate and set the username of the user in their instance of the class Faculty
+                    system("cls");          //clears the screen
+                    cout << "Your user name is:" << temp.get_uname() << endl;       //tells the user their newly generated username
+                    temp.set_password(password);        //set password function called to set the password of the user in their instance of the class Faculty
+                    vecFac.push_back(temp);             //pushes newlymade Faculty class onto the vector of user classes
+                    newuser = 'n';          //resets the new user input to no, so the program doesn't continue to loop and keep creating new user profiles
+                } else if (choice == 2) {   //Teacher user case
+                    cout << "Enter your first name:";       //asks for user first name
+                    cin >> firstname;       //reads in user first name input
+                    cout << "Enter your middle name:";      //asks for user middle name
+                    cin >> midname;         //reads in user middle name input
+                    cout << "Enter your last name:";        //asks for user last name
+                    cin >> lastname;        //reads in user last name input
+                    while (!passwordsuccess) {      //loop runs until successful password is achieved
+                        cout << "Enter your password:";     //asks user for password
+                        cin >> password;    //reads in user password
+                        cout << "Re-Enter your password:";  //asks for user to verify password
+                        cin >> psswrdcon;   //reads in user password again
+                        if (password == psswrdcon) {        //checks to see if user entered the same password each time, 
+                            passwordsuccess = true;         //therefore, setting the user's password to what they entered and allowing them to proceed
+                        } else          //case for incorrect entered password verification, causing this while to loop again
+                            cout << "Your password doesn't match. Try again" << endl;       //tells user their passwords did not match
                     }
-                    Teacher temp(firstname, midname, lastname);
-                    temp.set_uname();
-                    system("cls");
-                    cout << "Your user name is:" << temp.get_uname() << endl;
-                    temp.set_password(password);
-                    vecTeach.push_back(temp);
-                    newuser = 'n';
-                } else if (choice == 3) {
-                    cout << "Enter your first name:";
-                    cin >> firstname;
-                    cout << "Enter your middle name:";
-                    cin >> midname;
-                    cout << "Enter your last name:";
-                    cin >> lastname;
-                    while (!passwordsuccess) {
-                        cout << "Enter your password:";
-                        cin >> password;
-                        cout << "Re-Enter your password:";
-                        cin >> psswrdcon;
-                        if (password == psswrdcon) {
-                            passwordsuccess = true;
-                        } else
-                            cout << "Your password doesn't match. Try again" << endl;
+                    Teacher temp(firstname, midname, lastname);     //once you set a password, a Teacher class gets constructed for the current user
+                    temp.set_uname();       //set user name method called to generate and set the username of the user in their instance of the class Teacher
+                    system("cls");          //clears the screen
+                    cout << "Your user name is:" << temp.get_uname() << endl;       //tells the user their newly generated username
+                    temp.set_password(password);        //set user name method called to generate and set the username of the user in their instance of the class Teacher
+                    vecTeach.push_back(temp);           //pushes newlymade Teacher class onto the vector of user classes
+                    newuser = 'n';          //resets the new user input to no, so the program doesn't continue to loop and keep creating new user profiles
+                } else if (choice == 3) {   //Student user case
+                    cout << "Enter your first name:";       //asks for user first name
+                    cin >> firstname;       //reads in user first name input
+                    cout << "Enter your middle name:";      //asks for user middle name
+                    cin >> midname;         //reads in user middle name input
+                    cout << "Enter your last name:";        //asks for user last name
+                    cin >> lastname;        //reads in user last name input
+                    while (!passwordsuccess) {      //loop runs until successful password is achieved
+                        cout << "Enter your password:";     //asks user for password
+                        cin >> password;    //reads in user password
+                        cout << "Re-Enter your password:";  //asks for user to verify password
+                        cin >> psswrdcon;   //reads in user password again
+                        if (password == psswrdcon) {        //checks to see if user entered the same password each time, 
+                            passwordsuccess = true;         //therefore, setting the user's password to what they entered and allowing them to proceed
+                        } else          //case for incorrect entered password verification, causing this while to loop again
+                            cout << "Your password doesn't match. Try again" << endl;       //tells user their passwords did not match
                     }
-                    Student temp(firstname, midname, lastname);
-                    temp.set_uname();
-                    system("cls");
-                    cout << "Your user name is:" << temp.get_uname() << endl;
-                    temp.set_password(password);
-                    vecStud.push_back(temp);
-                    newuser = 'n';
-                } else {
+                    Student temp(firstname, midname, lastname);     //once you set a password, a Student class gets constructed for the current user
+                    temp.set_uname();       //set user name method called to generate and set the username of the user in their instance of the class Student
+                    system("cls");          //clears the screen
+                    cout << "Your user name is:" << temp.get_uname() << endl;       //tells the user their newly generated username
+                    temp.set_password(password);        //set user name method called to generate and set the username of the user in their instance of the class Student
+                    vecStud.push_back(temp);           //pushes newlymade Student class onto the vector of user classes
+                    newuser = 'n';          //resets the new user input to no, so the program doesn't continue to loop and keep creating new user profiles
+                } else {        //case for if the user doesn't enter a number corresponding to teacher, faculty, or student
                     cout << "Invalid choice, try again:" << endl;
                 }
-            } else {
-                cout << "Enter username:";
-                cin >> username;
-                cout << "Enter password:";
-                cin >> password;
-                if ((index = check_acct(username, password)) == 1)
-                    cout << "Username and password does not match." << endl;
+            } else {        //case for if the user enters n or once a new account is created, meaning that they are now an existing user
+                cout << "Enter username:";      //asks for the existing username
+                cin >> username;        //reads in username
+                cout << "Enter password:";      //asks for existing password
+                cin >> password;        //reads in password
+                if ((index = check_acct(username, password)) == 1)      //calls method to check for existing account
+                    cout << "Username and password does not match." << endl;        //tells user if existing username and password do not match records
             }
         }
     }
