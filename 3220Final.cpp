@@ -133,6 +133,7 @@ public:
 
 Faculty::Faculty(string fname, string mname, string lname) : UserType(fname, mname, lname) {
     int numofyrs, numofmos;
+    experience = 0;
     set_uname();
     cout << "How many years of experience do you have in your carrer?";
     cout << "Enter the number of years:";
@@ -184,14 +185,8 @@ void Faculty::saLary() {
     int numofyrs, numofmos;
     double basepy = 60000;
     salary = basepy + (experience * 500);
+    system("cls");
     cout << "Salary : " << salary << endl;
-    cout << "Press any alpha numeric key followed by enter to continue...";
-    cin >> pause;
-}
-
-void Faculty::enrollSummary() {
-    string pause;
-
     cout << "Press any alpha numeric key followed by enter to continue...";
     cin >> pause;
 }
@@ -259,10 +254,12 @@ void Teacher::operation(int choice) {
 
 void Teacher::courseEnrollment() {
     system("cls");
-    int i, index;
+    int i, index, err = 1;
     string cours, pause;
     char cont = 't';
     while (cont != 'N' && cont != 'n') {
+        err = 1;
+        system("cls");
         cout << "What courses are you teaching this semester:" << endl <<
                 "Enter the course number or if you don't know enter 'list' for an "
                 "list of courses:" << endl;
@@ -279,11 +276,12 @@ void Teacher::courseEnrollment() {
             } else
                 cout << "Not an course offered in the Electrical and Computer "
                     "Engineering Department." << endl;
-            while (cont != 'y' && cont != 'n' && cont != 'Y' && cont != 'N') {
+            while (err != 0) {
                 cout << "Do you want to add another course(y/n)?" << endl;
                 cin >> cont;
                 if (cont != 'y' && cont != 'n' && cont != 'Y' && cont != 'N')
                     cout << "Invalid input." << endl;
+                err = 0;
             }
 
         }
@@ -310,6 +308,15 @@ public:
     void courseEnrollment();
     void tuiTion();
     void enrollSummary();
+    void printTuition();
+
+    void setScholarship(double amount) {
+        scholarship = amount;
+    }
+
+    double getTuition() {
+        return tuition;
+    }
 };
 
 vector<Faculty> vecFac;
@@ -364,6 +371,21 @@ void Teacher::exportToFile() {
 
 }
 
+void Faculty::enrollSummary() {
+    system("cls");
+    string pause;
+    int i = 0;
+    double revenue = 0;
+    while (i < vecStud.size()) {
+        vecStud[i].tuiTion();
+        revenue += vecStud[i].getTuition();
+        i++;
+    }
+    cout << "Total Revenue = $" << revenue << endl;
+    cout << "Press any alpha numeric key followed by enter to continue...";
+    cin >> pause;
+}
+
 void Teacher::enrollSummary() {
     int i = 0, j = 0, k = 0, choice, schcntr;
     string cours, pause;
@@ -376,7 +398,6 @@ void Teacher::enrollSummary() {
         if (schedule.size() < 1)
             courseEnrollment();
         system("cls");
-
         switch (choice) {
             case 1:
                 cout << "Enter a course number using the following format ECE ####:";
@@ -584,18 +605,6 @@ void Student::tuiTion() {
     int i, index, hours;
     char choice = 't';
     double total = 0;
-    while (choice != 'y' && choice != 'n' && choice != 'Y' && choice != 'N') {
-        system("cls");
-        cout << "Did you receive scholarship money for this semester(y/n)?" << endl;
-        cin >> choice;
-        if (choice == 'y' || choice == 'Y') {
-            cout << "What is the total amount of scholarship money did you receive for this year?: ";
-            cin >> scholarship;
-        } else if (choice == 'n' || choice == 'N') {
-            scholarship = 0;
-        } else
-            cout << "Invalid option, Try again." << endl;
-    }
     for (i = 0; i < schedule.size(); i++) {
         if ((index = check_course(schedule[i])) != -1) {
             hours = course.credit_hours[index];
@@ -604,6 +613,11 @@ void Student::tuiTion() {
         }
     }
     total -= (scholarship / 2);
+    tuition = total;
+}
+
+void Student::printTuition() {
+    string pause;
     cout <<
             "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Tuition Breakdown~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl <<
             "General Tuition    @ $276.20 per credit hour" << endl <<
@@ -614,7 +628,6 @@ void Student::tuiTion() {
             "Rec Facility Fee   @ $146.34 flate rate" << endl <<
             "Student Act. Fee   @ $169.56 flate rate" << endl <<
             "Scholarship        @ -$" << scholarship / 2 << endl;
-    tuition = total;
     cout << " Tuition total is $" << tuition << endl;
     cout << "Press any alpha numeric key followed by enter to continue...";
     cin >> pause;
@@ -722,6 +735,7 @@ void load_data(string filename) {
             mname = letters[index];
             Student temp(fname, mname, lname);
             temp.set_schedule(cours);
+            temp.setScholarship(0);
             vecStud.push_back(temp);
         }
     }
@@ -762,10 +776,11 @@ int main(int argc, char** argv) {
     load_course(argc, argv); //calls function to load the list of courses
     srand(time(NULL)); //Initializes random number generator for use in creating username
     int choice, index;
+    double amount;
     bool loginsuccess = false; //sets login result to failure as default so that later loops run at least once
     bool passwordsuccess = false; //sets password result to failure as default so that later loops run at least once 
     string username, firstname, midname, lastname, password, psswrdcon; //define strings for names, username, and password
-    char newuser = 'n', faculty = 'n', teacher = 'n', student = 'n'; //sets answers to questions to no as default 
+    char newuser = 'n', faculty = 'n', teacher = 'n', student = 'n', schchoice = 't', eXit; //sets answers to questions to no as default 
     while (!loginsuccess) { //loop for login screen. loops until successful login is achieved
         cout << "Are you an new user? (y/n):" << endl; //asks user to input whether they are a new user or not
         cin >> newuser; //reads in y/n response
@@ -775,7 +790,7 @@ int main(int argc, char** argv) {
                 cout << "What type of user are you?\n" //asks for type of user you are. your answer willdetermine what actions the program lets you perform
                         "1)Faculty\n"
                         "2)Teacher\n"
-                        "3)Stdudent\n";
+                        "3)Student\n";
                 cin >> choice; //reads in user answer for type of user
                 system("cls"); //clears the screen to prepare for next screen
                 if (choice == 1) { //Faculty user case
@@ -801,7 +816,7 @@ int main(int argc, char** argv) {
                     cout << "Your user name is:" << temp.get_uname() << endl; //tells the user their newly generated username
                     temp.set_password(password); //set password function called to set the password of the user in their instance of the class Faculty
                     vecFac.push_back(temp); //pushes newlymade Faculty class onto the vector of user classes
-                    newuser = 'n'; //resets the new user input to no, so the program doesn't continue to loop and keep creating new user profiles
+                    newuser = 'n';
                 } else if (choice == 2) { //Teacher user case
                     cout << "Enter your first name:"; //asks for user first name
                     cin >> firstname; //reads in user first name input
@@ -825,7 +840,7 @@ int main(int argc, char** argv) {
                     cout << "Your user name is:" << temp.get_uname() << endl; //tells the user their newly generated username
                     temp.set_password(password); //set user name method called to generate and set the username of the user in their instance of the class Teacher
                     vecTeach.push_back(temp); //pushes newlymade Teacher class onto the vector of user classes
-                    newuser = 'n'; //resets the new user input to no, so the program doesn't continue to loop and keep creating new user profiles
+                    newuser = 'n';
                 } else if (choice == 3) { //Student user case
                     cout << "Enter your first name:"; //asks for user first name
                     cin >> firstname; //reads in user first name input
@@ -843,13 +858,27 @@ int main(int argc, char** argv) {
                         } else //case for incorrect entered password verification, causing this while to loop again
                             cout << "Your password doesn't match. Try again" << endl; //tells user their passwords did not match
                     }
+                    while (schchoice != 'y' && schchoice != 'n' && schchoice != 'Y' && schchoice != 'N') {
+                        system("cls");
+                        cout << "Did you receive scholarship money for this semester(y/n)?" << endl;
+                        cin >> schchoice;
+                        if (schchoice == 'y' || schchoice == 'Y') {
+                            cout << "What is the total amount of scholarship money did you receive for this year?: ";
+                            cin >> amount;
+                        } else if (schchoice == 'n' || schchoice == 'N') {
+                            amount = 0;
+                        } else
+                            cout << "Invalid option, Try again." << endl;
+                    }
                     Student temp(firstname, midname, lastname); //once you set a password, a Student class gets constructed for the current user
                     temp.set_uname(); //set user name method called to generate and set the username of the user in their instance of the class Student
                     system("cls"); //clears the screen
+                        
                     cout << "Your user name is:" << temp.get_uname() << endl; //tells the user their newly generated username
+                    temp.setScholarship(amount);
                     temp.set_password(password); //set user name method called to generate and set the username of the user in their instance of the class Student
                     vecStud.push_back(temp); //pushes newlymade Student class onto the vector of user classes
-                    newuser = 'n'; //resets the new user input to no, so the program doesn't continue to loop and keep creating new user profiles
+                    newuser = 'n';
                 } else { //case for if the user doesn't enter a number corresponding to teacher, faculty, or student
                     cout << "Invalid choice, try again:" << endl;
                 }
@@ -860,6 +889,10 @@ int main(int argc, char** argv) {
                 cin >> password; //reads in password
                 if ((index = check_acct(username, password)) == 1) //calls method to check for existing account
                     cout << "Username and password does not match." << endl; //tells user if existing username and password do not match records
+                cout << "Do you want to exit the program(y/n)?:";
+                    cin >> eXit;
+                    if (eXit == 'y' || eXit == 'Y')
+                        loginsuccess = true;
             }
         }
     }
