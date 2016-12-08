@@ -714,7 +714,7 @@ void load_course(int argc, char** argv) {
 }
 
 int main(int argc, char** argv) {
-    load_course(argc, argv);    //load_course function is called to load the course list
+    load_course(argc, argv);
     srand(time(NULL));
     int choice, index;
     bool loginsuccess = false;
