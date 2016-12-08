@@ -17,7 +17,10 @@ using namespace std;
 
 
 string letters = "abcdefghijklmnopqrstuvwxyz";
+/* class Course contains coutse name, number, credit hours and description and a method of checking entered course name
+is/isnt in the course list*/
 
+/* this class initiate course related information and check if input course name in the list */
 class Course {
 public:
     vector<string> course_names;    //course names vector
@@ -42,6 +45,9 @@ int check_course(string cours) {        //checks to see if user's course number 
     return -1;
 }
 
+
+/* class UserType contains username, password, first mid and last name of user and methods handling(save) the inputs*/
+/* usertype asking user input infor,  get and save infor */
 class UserType {    //generic user class with name, username, and password
 protected:
     string username;
@@ -53,34 +59,34 @@ public:
     UserType();     //constructor
     UserType(string fname, string mname, string lname);     //second constructor with parameters
 
-    string get_fname() {        //function to send first name
+    string get_fname() {        //method to send first name
         return first_name;
     }
-    void set_fname(string fname);      //function to set first name
+    void set_fname(string fname);      //method to set first name
 
-    string get_mname() {        //function to send middle name
+    string get_mname() {        //method to send middle name
         return mid_name;
     }
-    void set_mname(string mname);       //function to set middle name
+    void set_mname(string mname);       //method to set middle name
 
-    string get_lname() {        //function to send last name
+    string get_lname() {        //method to send last name
         return last_name;
     }
-    void set_lname(string lname);       //function to set last name
+    void set_lname(string lname);       //method to set last name
 
-    string get_uname() {        //function to send username
+    string get_uname() {        //method to send username
         return username;
     }
-    virtual void set_uname();       //function to set username
+    virtual void set_uname();       //method to set username
 
-    string get_password() {     //function to send password
+    string get_password() {     //method to send password
         return password;
     }
-    void set_password(string pw);   //function to set password
+    void set_password(string pw);   //method to set password
     virtual void menu();
 };
 
-UserType::UserType() {      //constructor
+UserType::UserType() {      //constructor asking user name(first mid last) 
     cout << "Enter your first name:";
     cin >> first_name;
     cout << "Enter your middle name:";
@@ -95,7 +101,7 @@ UserType::UserType(string fname, string mname, string lname) {      //constructo
     last_name = lname;
 }
 
-void UserType::set_uname() {
+void UserType::set_uname() {                                 //method to set and save user name(first,mid, last
     string tmp_first = get_fname(), tmp_last = get_lname(), tmp_uname;
     tmp_uname = tmp_first[0] + tmp_last;
     username = tmp_uname;
@@ -108,9 +114,9 @@ void UserType::menu() {
 void UserType::set_password(string pw) {
     password = pw;
 }
-
+/* class Faculty inheritance class of Usertype */
 class Faculty : public UserType {
-private:
+private:                            // private member 
     vector<char> schedule;
     int experience;
     double salary;
@@ -137,7 +143,7 @@ Faculty::Faculty(string fname, string mname, string lname) : UserType(fname, mna
 
 void Faculty::set_uname() {
     string tmp_first = get_fname(), tmp_last = get_lname(), tmp_uname;
-    tmp_uname = tmp_first[0] + tmp_last;
+    tmp_uname = tmp_first[0] + tmp_last; //create a nuw username set first letter of first name+last name
     username = tmp_uname;
 }
 
@@ -188,7 +194,7 @@ void Faculty::enrollSummary() {
 }
 
 class Teacher : public UserType {
-private:
+private:    
     int experience;
     double salary;
     vector<string> schedule;
@@ -682,7 +688,7 @@ void load_data(string filename) {
         }
     }
 }
-
+/* */
 void load_course(int argc, char** argv) {
     int i = 0;
     ifstream fileIn("courses.txt");
