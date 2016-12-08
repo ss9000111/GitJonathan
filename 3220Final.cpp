@@ -205,6 +205,7 @@ public:
     void courseEnrollment();
     void saLary();
     void enrollSummary();
+    void exportToFile();
 };
 
 Teacher::Teacher(string fname, string mname, string lname) : UserType(fname, mname, lname) {
@@ -257,24 +258,36 @@ void Teacher::courseEnrollment() {
     system("cls");
     int i, index;
     string cours, pause;
+    char cont = 't';
+    while (cont != 'N' && cont != 'n'){
     cout << "What courses are you teaching this semester:" << endl <<
             "Enter the course number or if you don't know enter 'list' for an "
             "list of courses:" << endl;
-    cin >> cours;
+    fflush(stdin);
+    getline( cin, cours, '\n');
     if (cours == "list") {
         for (i = 0; i < course.course_names.size(); i++) {
             cout << course.course_names[i] << endl <<
                     course.course_desc[i] << endl;
         }
     } else {
-        if (check_course(cours) != -1)
-            schedule.erase(schedule.begin() + check_course(cours));
+        if (check_course(cours) != -1){
+            schedule.push_back(cours);
+        }
         else
             cout << "Not an course offered in the Electrical and Computer "
                 "Engineering Department." << endl;
+        while (cont != 'y' && cont != 'n' && cont != 'Y' && cont != 'N'){
+        cout << "Do you want to add another course(y/n)?" << endl;
+            cin >> cont;
+        if (cont != 'y' && cont != 'n' && cont != 'Y' && cont != 'N')
+            cout << "Invalid input." << endl;
+        }
+        
     }
     cout << "Press any alpha numeric key followed by enter to continue...";
     cin >> pause;
+}
 }
 
 class Student : public UserType {
@@ -286,7 +299,7 @@ public:
     Student(string fname, string mname, string lname);
     void set_uname();
     void set_schedule(string cours);
-    void get_schedule(){
+    vector<string> get_schedule(){
         return schedule;
     }
     void menu();
@@ -294,6 +307,7 @@ public:
     void courseEnrollment();
     void tuiTion();
     void enrollSummary();
+    void addCourse();
 };
 
 vector<Faculty> vecFac;
@@ -322,6 +336,29 @@ void Student::set_uname() {
 
 void Student::set_schedule(string cours) {
     schedule.push_back(cours);
+}
+
+void Teacher::exportToFile(){
+    int i = 0, j = 0, k = 0;
+    while (i < schedule.size()){
+        string course = schedule[i];
+        course += ".pdf";
+        ofstream fileOut(course);
+        fileOut << schedule[i] << " Roster" << endl <<
+                "~~~~~~~~~~~~~~~~~~~~~~" << endl << 
+                "Professor: " << first_name << " " << last_name << endl;
+        while (k < vecStud.size()) {
+            j = 0;
+            while (j < vecStud[k].get_schedule().size()) {
+                if (vecStud[k].get_schedule()[j] == schedule[i])
+                    fileOut << vecStud[k].get_fname() << " " << vecStud[k].get_lname() << endl;
+                j++;
+            }
+            k++;
+        }
+        fileOut.close();
+    }
+    
 }
 
 void Teacher::enrollSummary() {
@@ -361,25 +398,26 @@ void Teacher::enrollSummary() {
                 while (sumchoice < 0 || sumchoice > schedule.size()) {
                     cout << "Choose an course from your schedule you would like to view:" << endl;
                     for (schcntr = 0; schcntr < schedule.size(); schcntr++) {
-                        cout << i++ << ") " << schedule[schcntr] << endl;
+                        cout << i+1 << ") " << schedule[schcntr] << endl;
+                        i++;
                     }
                     cout << ++i << ") Export all classes in your schedule to an pdf." << endl;
                     cin >> sumchoice;
                     i = 0;
-                    if (sumchoice > 0 && sumchoice <= schedule.size()) {
-                        cout << schedule[sumchoice] << endl;
-                        if (sumchoice < vecStud.size()) {
+                    if ((sumchoice - 1) >= 0 && (sumchoice - 1) <= schedule.size()) {
+                        if ((sumchoice - 1) < schedule.size()) {
+                            cout << schedule[sumchoice - 1] << " Roster" << endl;
                             while (i < vecStud.size()) {
                                 j = 0;
                                 while (j < vecStud[i].get_schedule().size()) {
-                                    if (vecStud[i].get_schedule()[j] == schedule[sumchoice])
+                                    if (vecStud[i].get_schedule()[j] == schedule[sumchoice - 1])
                                         cout << vecStud[i].get_fname() + " " + vecStud[i].get_lname() << endl;
                                     j++;
                                 }
                                 i++;
                             }
-                        } else if (sumchoice == vecStud.size()) {
-                            //Export function
+                        } else if ((sumchoice - 1) == schedule.size()) {
+                            exportToFile();
                         }
                     } else
                         cout << "Invalid course selection." << endl;
@@ -447,18 +485,12 @@ void Student::operation(int choice) {
     }
 }
 
-void Student::courseEnrollment() {
-    system("cls");
-    int i, choice, delchoice, schcntr, index, err = 1;
+void Student::addCourse(){
+    int i, delchoice, schcntr, index, err = 1;
     char cont = 't';
-    string cours, pause;
-    cout << "Choose an operation:" << endl <<
-            "1) Enroll in to a course" << endl <<
-            "2) Drop an course" << endl;
-    cin >> choice;
-    switch (choice) {
-        case 1:
-            while (cont != 'n' && cont != 'N') {
+    string cours, pause, choice;
+    while (cont != 'n' && cont != 'N') {
+                err = 1;
                 cout << "What courses are you taking this semester:" << endl <<
                         "Enter the course number or if you don't know enter 'list' for an "
                         "list of courses:" << endl;
@@ -505,47 +537,10 @@ void Student::courseEnrollment() {
                         err = 0;
                 }
             }
-            break;
-        case 2:
-            cont = 't';
-            while (cont != 'n' && cont != 'N') {
-                if (schedule.size() > 0) {
-                    while (delchoice < 0 || delchoice > schedule.size()) {
-                        cout << first_name << " " << last_name << "\'s Schedule" << endl <<
-                                "****************************" << endl;
-                        for (schcntr = 0; schcntr < schedule.size(); schcntr++) {
-                            cout << i << ") " << schedule[schcntr] << endl;
-                        }
-                        cout << "Enter an course number from your schedule you would like to delete:" << endl;
-                        cin >> cours;
-                        i = 0;
-                        if (check_course(cours) != -1)
-                            while (i < schedule.size()) {
-                                if (schedule[i] == cours)
-                                    schedule[i].erase();
-                                i++;
-                                err = 1;
-                                while (err != 0) {
-                                    system("cls");
-                                    cout << "Would you like to remove more courses from your schedule(y/n)?" << endl;
-                                    cin >> cont;
-                                    if (cont != 'y' && cont != 'Y' && cont != 'n' && cont != 'N') {
-                                        cout << "Invalid option, try again." << endl;
-                                    } else
-                                        err = 0;
-                                }
-                            } else
-                            cout << "Not an course offered in the Electrical and Computer "
-                                "Engineering Department. Try entering another course number." << endl;
-                    }
-                } else
-                    cout << "You are not enrolled into any classes.";
-            }
-            break;
-        default:
-            cout << "Invalid operation. Try again." << endl;
-            break;
-    }
+        }
+
+void Student::courseEnrollment(){
+    addCourse();
 }
 
 void Student::tuiTion() {
