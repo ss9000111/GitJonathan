@@ -281,13 +281,12 @@ class Student : public UserType {
 private:
     double tuition;
     double scholarship;
-    string residency;
     vector<string> schedule;
 public:
     Student(string fname, string mname, string lname);
     void set_uname();
     void set_schedule(string cours);
-
+    void get_schedule(){
         return schedule;
     }
     void menu();
@@ -302,24 +301,7 @@ vector<Teacher> vecTeach;
 vector<Student> vecStud;
 
 Student::Student(string fname, string mname, string lname) : UserType(fname, mname, lname) {
-    char choice;
-    int err = -1;
     set_uname();
-    while (err != 0){
-    cout << "Are you an Missouri resident(y/n)?";
-    cin >> choice;
-    if (choice == 'y' || choice == 'Y'){
-        residency = "resident";
-        err = 0;
-    }
-    else if (choice == 'n' || choice == 'N'){
-        residency = "non-resident";
-        err = 0;
-    }
-    else{
-        cout << "Invalid choice." << endl;
-    }
-    }
 }
 
 void Student::set_uname() {
@@ -355,7 +337,7 @@ void Teacher::enrollSummary() {
     while (choice != -1) {
         switch (choice) {
             case 1:
-                cout << "Enter a course number using the following format CC ####:";
+                cout << "Enter a course number using the following format ECE ####:";
                 fflush(stdin);
                 getline(cin, cours, '\n');
                 if (check_course(cours) != -1) {
@@ -468,7 +450,7 @@ void Student::operation(int choice) {
 void Student::courseEnrollment() {
     system("cls");
     int i, choice, delchoice, schcntr, index, err = 1;
-    char cont = 'n';
+    char cont = 't';
     string cours, pause;
     cout << "Choose an operation:" << endl <<
             "1) Enroll in to a course" << endl <<
@@ -476,7 +458,7 @@ void Student::courseEnrollment() {
     cin >> choice;
     switch (choice) {
         case 1:
-            while (cont != 'y' && cont != 'Y') {
+            while (cont != 'n' && cont != 'N') {
                 cout << "What courses are you taking this semester:" << endl <<
                         "Enter the course number or if you don't know enter 'list' for an "
                         "list of courses:" << endl;
@@ -525,8 +507,8 @@ void Student::courseEnrollment() {
             }
             break;
         case 2:
-            cont = 'n';
-            while (cont != 'y' && cont != 'Y') {
+            cont = 't';
+            while (cont != 'n' && cont != 'N') {
                 if (schedule.size() > 0) {
                     while (delchoice < 0 || delchoice > schedule.size()) {
                         cout << first_name << " " << last_name << "\'s Schedule" << endl <<
@@ -611,19 +593,17 @@ void Student::tuiTion() {
 void Student::enrollSummary() {
     system("cls");
     int i;
-    char choice;
+    char choice = 't';
     cout << "Enrollment Summary" << endl <<
             "~~~~~~~~~~~~~~~~~~~" << endl;
     for (i = 0; i < schedule.size(); i++) {
         cout << schedule[i] << " " << course.course_names[check_course(schedule[i])] << endl;
     }
-    while (choice == 'Y' && choice == 'y' && choice == 'n' && choice == 'N') {
+    while (choice != 'n' && choice != 'N') {
         cout << "Would you like to export your course schedule to an pdf (y/n):";
         cin >> choice;
-        if (choice == 'Y' || choice == 'y' || choice == 'n' || choice == 'N') {
-            if (choice == 'Y' || choice == 'y') {
+        if (choice == 'Y' || choice == 'y') {
                 //Put schedule into an file
-            }
         } else if (choice != 'n' && choice != 'N') {
             cout << "Invalid option. Try again." << endl;
             system("cls");
