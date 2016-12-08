@@ -107,20 +107,20 @@ void UserType::set_uname() {                                 //method to set and
     username = tmp_uname;
 }
 
-void UserType::menu() {
+void UserType::menu() {                                       //usertype menu display message and filename
     cout << "Welcome " << get_fname() << ", to Elite University" << endl;
 }
 
-void UserType::set_password(string pw) {
+void UserType::set_password(string pw) {                          //method set password
     password = pw;
 }
 /* class Faculty inheritance class of Usertype */
 class Faculty : public UserType {
-private:                            // private member 
+private:                            // neither derived classes nor other users can access
     vector<char> schedule;
     int experience;
     double salary;
-public:
+public:                             //public for all users
     Faculty(string fname, string mname, string lname);
     void set_uname();
     void menu();
@@ -129,7 +129,7 @@ public:
     void enrollSummary();
 };
 
-Faculty::Faculty(string fname, string mname, string lname) : UserType(fname, mname, lname) {
+Faculty::Faculty(string fname, string mname, string lname) : UserType(fname, mname, lname) { // parametric constructor
     int numofyrs, numofmos;
     set_uname();
     cout << "How many years of experience do you have in your carrer?";
@@ -141,29 +141,29 @@ Faculty::Faculty(string fname, string mname, string lname) : UserType(fname, mna
     experience += (numofyrs + numofmos);
 }
 
-void Faculty::set_uname() {
+void Faculty::set_uname() {                                 //method set username to conbine and create new name
     string tmp_first = get_fname(), tmp_last = get_lname(), tmp_uname;
-    tmp_uname = tmp_first[0] + tmp_last; //create a nuw username set first letter of first name+last name
+    tmp_uname = tmp_first[0] + tmp_last; //create a new username set first letter of first name+last name
     username = tmp_uname;
 }
-
-void Faculty::menu() {
-    system("cls");
+    
+void Faculty::menu() {                                         //method faculty menu
+    system("cls");                                             //clear screen
     int choice = 0;
     cout << "Welcome " << get_fname() << ", to Elite University" << endl;
-    while (choice != 3) {
+    while (choice != 3) {                                      //keep asking user input their chooice until summary picked
         system("cls");
         cout << "Choose an operation" << endl <<
                 "1. Salary" << endl <<
                 "2. Enrollment Summary" << endl <<
                 "3. Logout" << endl;
         cin >> choice;
-        operation(choice);
+        operation(choice);                                      //operation called
     }
 }
 
-void Faculty::operation(int choice) {
-    switch (choice) {
+void Faculty::operation(int choice) {                           //operation to switch cases 1 to 3
+    switch (choice) {  
         case 1:
             saLary();
             break;
@@ -172,13 +172,13 @@ void Faculty::operation(int choice) {
             break;
         case 3:
             break;
-        default:
+        default:                                                //default message: invalid choice displayed
             cout << "Invalid choice" << endl;
     }
 }
 
-void Faculty::saLary() {
-    string pause;
+void Faculty::saLary() {                                        //method salary to calculate and show the salary based on
+    string pause;                                               //experience, base pay.
     int numofyrs, numofmos;
     double basepy = 60000;
     salary = basepy + (experience * 500);
@@ -186,15 +186,17 @@ void Faculty::saLary() {
     cout << "Press any alpha numeric key followed by enter to continue...";
     cin >> pause;
 }
-
-void Faculty::enrollSummary() {
+    
+void Faculty::enrollSummary() {                                    //enrollSummary taking string pause in
     string pause;
     cout << "Press any alpha numeric key followed by enter to continue...";
     cin >> pause;
 }
-
-class Teacher : public UserType {
-private:    
+/*in class Teacher, inheritance class of class UserType. it asking the experiecne length of working and set name.
+method menu display, operation chooice, courseEnrollment to ask what course going to teach and enrollmentSummary to 
+give options 1.search enrollment summary for a course and 2 see the summary of enrollment in schedual */
+class Teacher : public UserType {                                 //inheritance class of UserType
+private:                                                            
     int experience;
     double salary;
     vector<string> schedule;
@@ -207,7 +209,7 @@ public:
     void enrollSummary();
 };
 
-Teacher::Teacher(string fname, string mname, string lname) : UserType(fname, mname, lname) {
+Teacher::Teacher(string fname, string mname, string lname) : UserType(fname, mname, lname) {//parametric constructor
     int numofyrs, numofmos;
     set_uname();
     cout << "How many years of experience do you have in your carrer?";
@@ -219,7 +221,8 @@ Teacher::Teacher(string fname, string mname, string lname) : UserType(fname, mna
     experience += (numofyrs + numofmos);
 }
 
-void Teacher::menu() {
+void Teacher::menu() {                          //method display menu asking user chooice opeartion/enrollment/salary
+                                                   //enrollment summary or logout
     system("cls");
     int choice = 0;
     cout << "Welcome " << get_fname() << ", to Elite University" << endl;
@@ -236,32 +239,32 @@ void Teacher::menu() {
 }
 
 void Teacher::operation(int choice) {
-    switch (choice) {
-        case 1:
+    switch (choice) {                               //swich choice to perform different tasks
+        case 1:                                     //case 1 courseEnrollment() being called
             courseEnrollment();
             break;
-        case 2:
+        case 2:                                     //case 2 saLary() called, the saLary based on information entered 
             saLary();
             break;
-        case 3:
+        case 3:                                        //case 3 check the enrollment Summary from schedual
             enrollSummary();
             break;
-        case 4:
+        case 4:                                       //case 4 break
             break;
-        default:
+        default:                                      //default error message 
             cout << "Invalid choice" << endl;
     }
 }
 
 void Teacher::courseEnrollment() {
-    system("cls");
+    system("cls");                          //clear screen
     int i, index;
-    string cours, pause;
+    string cours, pause;                    //define string
     cout << "What courses are you teaching this semester:" << endl <<
             "Enter the course number or if you don't know enter 'list' for an "
             "list of courses:" << endl;
     cin >> cours;
-    if (cours == "list") {
+    if (cours == "list") {                          //check if the course name entered is in the list
         for (i = 0; i < course.course_names.size(); i++) {
             cout << course.course_names[i] << endl <<
                     course.course_desc[i] << endl;
@@ -276,36 +279,36 @@ void Teacher::courseEnrollment() {
     cout << "Press any alpha numeric key followed by enter to continue...";
     cin >> pause;
 }
-
+/*class student is inheritance class of UserType, */
 class Student : public UserType {
-private:
+private:                                        //private members 
     double tuition;
     double scholarship;
     vector<string> schedule;
-public:
+public:                                         //public members/methods
     Student(string fname, string mname, string lname);
     void set_uname();
     void set_schedule(string cours);
 
-    vector<string> get_schedule() {
+    vector<string> get_schedule() {             
         return schedule;
     }
-    void menu();
+    void menu();                                        //declear methods
     void operation(int choice);
     void courseEnrollment();
     void tuiTion();
     void enrollSummary();
 };
 
-vector<Faculty> vecFac;
+vector<Faculty> vecFac;                               //vector define
 vector<Teacher> vecTeach;
 vector<Student> vecStud;
 
 Student::Student(string fname, string mname, string lname) : UserType(fname, mname, lname) {
-    set_uname();
+    set_uname();                                        //parametric constructor
 }
 
-void Student::set_uname() {
+void Student::set_uname() {                             //set student name, all lower cases
     int index = rand() % 26;
     string tmp_first = get_fname(), tmp_mid = get_mname(), tmp_last = get_lname(), tmp_uname;
     stringstream ss;
@@ -315,7 +318,7 @@ void Student::set_uname() {
     tmp_uname.push_back(tolower(tmp_mid[0]));
     tmp_uname.push_back(tolower(tmp_last[0]));
     tmp_uname += num;
-    tmp_uname.push_back(letters[index]);
+    tmp_uname.push_back(letters[index]);                  
     index = rand() % 26;
     tmp_uname.push_back(letters[index]);
     username = tmp_uname;
@@ -325,7 +328,7 @@ void Student::set_schedule(string cours) {
     schedule.push_back(cours);
 }
 
-void Teacher::enrollSummary() {
+void Teacher::enrollSummary() {     //with this the teacher method enrollSummary will not out of scope
     int i = 0, j = 0, choice, schcntr;
     string cours, pause;
     cout << "Choose an operation:" << endl <<
