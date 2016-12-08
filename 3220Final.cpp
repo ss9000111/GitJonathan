@@ -641,7 +641,7 @@ int check_acct(string username, string password) {
         }
         i++;
     }
-    return 1;
+    return -1;
 }
 
 Faculty find_Facacct(string username, int index) {
@@ -812,7 +812,7 @@ int main(int argc, char** argv) {
                 cin >> username;                                    //reads in username
                 cout << "Enter password:";                          //asks for existing password
                 cin >> password;                                    //reads in password
-                if ((index = check_acct(username, password)) == 1)  //calls method to check for existing account
+                if ((index = check_acct(username, password)) == -1)  //calls method to check for existing account
                     cout << "Username and password does not match." << endl;    //tells user if existing username and password do not match records
             }
         }
