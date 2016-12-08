@@ -342,7 +342,7 @@ void Teacher::exportToFile(){
     int i = 0, j = 0, k = 0;
     while (i < schedule.size()){
         string course = schedule[i];
-        course += ".pdf";
+        course += ".txt";
         ofstream fileOut(course);
         fileOut << schedule[i] << " Roster" << endl <<
                 "~~~~~~~~~~~~~~~~~~~~~~" << endl << 
@@ -357,6 +357,7 @@ void Teacher::exportToFile(){
             k++;
         }
         fileOut.close();
+        i++;
     }
     
 }
