@@ -13,6 +13,7 @@
 #include <ctime>
 #include <sstream>
 #include <fstream>
+#include <cctype>
 using namespace std;
 
 
@@ -135,7 +136,7 @@ Faculty::Faculty(string fname, string mname, string lname) : UserType(fname, mna
     int numofyrs, numofmos;
     experience = 0;
     set_uname();
-    cout << "How many years of experience do you have in your carrer?";
+    cout << "How many years of experience do you have in your career?" << endl;
     cout << "Enter the number of years:";
     cin >> numofyrs;
     cout << "Enter the number of months:";
@@ -153,15 +154,24 @@ void Faculty::set_uname() {
 void Faculty::menu() {
     system("cls");
     int choice = 0;
-    cout << "Welcome " << get_fname() << ", to Elite University" << endl;
+    string selection, pause;
     while (choice != 3) {
         system("cls");
+        cout << "Welcome " << get_fname() << endl;
         cout << "Choose an operation" << endl <<
                 "1. Salary" << endl <<
                 "2. Revenue" << endl <<
                 "3. Logout" << endl;
-        cin >> choice;
-        operation(choice);
+        fflush(stdin);
+        getline(cin, selection, '\n');
+        if (isalpha(selection[0])) {
+            cout << "Invalid input. You need to select an integer." << endl <<
+                    "Press any alpha numeric key followed by enter to continue...";
+            cin >> pause;
+        } else {
+            choice = stoi(selection);
+            operation(choice);
+        }
     }
 }
 
@@ -209,7 +219,7 @@ public:
 Teacher::Teacher(string fname, string mname, string lname) : UserType(fname, mname, lname) {
     int numofyrs, numofmos;
     set_uname();
-    cout << "How many years of experience do you have in your carrer?";
+    cout << "How many years of experience do you have in your career?" << endl;
     cout << "Enter the number of years:";
     cin >> numofyrs;
     cout << "Enter the number of months:";
@@ -221,16 +231,25 @@ Teacher::Teacher(string fname, string mname, string lname) : UserType(fname, mna
 void Teacher::menu() {
     system("cls");
     int choice = 0;
-    cout << "Welcome " << get_fname() << ", to Elite University" << endl;
+    string selection, pause;
     while (choice != 4) {
         system("cls");
+        cout << "Welcome " << get_fname() << endl;
         cout << "Choose an operation" << endl <<
                 "1. Course Enrollment" << endl <<
                 "2. Salary" << endl <<
                 "3. Enrollment Summary" << endl <<
                 "4. Logout" << endl;
-        cin >> choice;
-        operation(choice);
+        fflush(stdin);
+        getline(cin, selection, '\n');
+        if (isalpha(selection[0])) {
+            cout << "Invalid input. You need to select an integer." << endl <<
+                    "Press any alpha numeric key followed by enter to continue...";
+            cin >> pause;
+        } else {
+            choice = stoi(selection);
+            operation(choice);
+        }
     }
 }
 
@@ -281,7 +300,8 @@ void Teacher::courseEnrollment() {
                 cin >> cont;
                 if (cont != 'y' && cont != 'n' && cont != 'Y' && cont != 'N')
                     cout << "Invalid input." << endl;
-                err = 0;
+                else
+                    err = 0;
             }
 
         }
@@ -388,101 +408,114 @@ void Faculty::enrollSummary() {
 
 void Teacher::enrollSummary() {
     int i = 0, j = 0, k = 0, choice, schcntr;
-    string cours, pause;
+    string cours, pause, selection;
     while (choice != 3) {
+        system("cls");
         cout << "Choose an operation:" << endl <<
                 "1) Search for the enrollment summary for a course." << endl <<
                 "2) View the enrollment summary for a course in your schedule." << endl <<
                 "3) Return to menu." << endl;
-        cin >> choice;
-        if (schedule.size() < 1)
-            courseEnrollment();
-        system("cls");
-        switch (choice) {
-            case 1:
-                cout << "Enter a course number using the following format ECE ####:";
-                fflush(stdin);
-                getline(cin, cours, '\n');
-                if (check_course(cours) != -1) {
-                    while (i < vecStud.size()) {
-                        j = 0;
-                        while (j < vecStud[i].get_schedule().size()) {
-                            if (vecStud[i].get_schedule()[j] == cours)
-                                cout << vecStud[i].get_fname() + " " + vecStud[i].get_lname() << endl;
-                            j++;
+        getline(cin, selection, '\n');
+        if (isalpha(selection[0])) {
+            cout << "Invalid input. You need to select an integer." << endl <<
+                    "Press any alpha numeric key followed by enter to continue...";
+            cin >> pause;
+        } else {
+            choice = stoi(selection);
+            if (schedule.size() < 1)
+                courseEnrollment();
+            system("cls");
+            switch (choice) {
+                case 1:
+                    cout << "Enter a course number using the following format ECE ####:";
+                    fflush(stdin);
+                    getline(cin, cours, '\n');
+                    if (check_course(cours) != -1) {
+                        while (i < vecStud.size()) {
+                            j = 0;
+                            while (j < vecStud[i].get_schedule().size()) {
+                                if (vecStud[i].get_schedule()[j] == cours)
+                                    cout << vecStud[i].get_fname() + " " + vecStud[i].get_lname() << endl;
+                                j++;
+                            }
+                            i++;
                         }
-                        i++;
+                    } else {
+                        cout << "Invalid course number" << endl;
                     }
-                } else {
-                    cout << "Invalid course number" << endl;
-                }
-                break;
-            case 2:
-                int sumchoice;
-                char leave, print;
-                i = 0;
-                sumchoice = -1;
-                while (leave != 'y' && leave != 'Y') {
-                    cout << "Choose an course from your schedule you would like to view:" << endl;
-                    for (schcntr = 0; schcntr < schedule.size(); schcntr++) {
-                        cout << i + 1 << ") " << schedule[schcntr] << endl;
-                        i++;
-                    }
-                    cout << ++i << ") Export all classes in your schedule to an pdf." << endl;
-                    cin >> sumchoice;
+                    break;
+                case 2:
+                    int sumchoice;
+                    char leave, print;
                     i = 0;
-                    if ((sumchoice - 1) >= 0 && (sumchoice - 1) <= schedule.size()) {
-                        if ((sumchoice - 1) < schedule.size()) {
-                            cout << schedule[sumchoice - 1] << " Roster" << endl;
-                            while (i < vecStud.size()) {
-                                j = 0;
-                                while (j < vecStud[i].get_schedule().size()) {
-                                    if (vecStud[i].get_schedule()[j] == schedule[sumchoice - 1])
-                                        cout << vecStud[i].get_fname() + " " + vecStud[i].get_lname() << endl;
-                                    j++;
-                                }
-                                i++;
-                            }
-                            cout << endl << endl << "Would you like to export the roster to an text file?"
-                                    "Enter \'y\' for yes or \'n\' for no.: ";
-                            cin >> print;
-                            if (print == 'y') {
-                                i = 0;
-                                string course = schedule[sumchoice - 1];
-                                course += ".txt";
-                                ofstream fileOut(course);
-                                fileOut << schedule[sumchoice - 1] << " Roster" << endl <<
-                                        "~~~~~~~~~~~~~~~~~~~~~~" << endl <<
-                                        "Professor: " << first_name << " " << last_name << endl;
-                                while (i < vecStud.size()) {
-                                    j = 0;
-                                    while (j < vecStud[i].get_schedule().size()) {
-                                        if (vecStud[i].get_schedule()[j] == schedule[sumchoice - 13])
-                                            fileOut << vecStud[i].get_fname() << " " << vecStud[i].get_lname() << endl;
-                                        j++;
+                    sumchoice = -1;
+                    while (leave != 'y' && leave != 'Y') {
+                        cout << "Choose an course from your schedule you would like to view:" << endl;
+                        for (schcntr = 0; schcntr < schedule.size(); schcntr++) {
+                            cout << i + 1 << ") " << schedule[schcntr] << endl;
+                            i++;
+                        }
+                        cout << ++i << ") Export all classes in your schedule to an pdf." << endl;
+                        getline(cin, selection, '\n');
+                        if (isalpha(selection[0])) {
+
+                        } else {
+                            sumchoice = stoi(selection);
+                            i = 0;
+                            if ((sumchoice - 1) >= 0 && (sumchoice - 1) <= schedule.size()) {
+                                if ((sumchoice - 1) < schedule.size()) {
+                                    cout << schedule[sumchoice - 1] << " Roster" << endl;
+                                    while (i < vecStud.size()) {
+                                        j = 0;
+                                        while (j < vecStud[i].get_schedule().size()) {
+                                            if (vecStud[i].get_schedule()[j] == schedule[sumchoice - 1])
+                                                cout << vecStud[i].get_fname() + " " + vecStud[i].get_lname() << endl;
+                                            j++;
+                                        }
+                                        i++;
                                     }
-                                    i++;
+                                    cout << endl << endl << "Would you like to export the roster to an text file?"
+                                            "Enter \'y\' for yes or \'n\' for no.: ";
+                                    cin >> print;
+                                    if (print == 'y') {
+                                        i = 0;
+                                        string course = schedule[sumchoice - 1];
+                                        course += ".txt";
+                                        ofstream fileOut(course);
+                                        fileOut << schedule[sumchoice - 1] << " Roster" << endl <<
+                                                "~~~~~~~~~~~~~~~~~~~~~~" << endl <<
+                                                "Professor: " << first_name << " " << last_name << endl;
+                                        while (i < vecStud.size()) {
+                                            j = 0;
+                                            while (j < vecStud[i].get_schedule().size()) {
+                                                if (vecStud[i].get_schedule()[j] == schedule[sumchoice - 13])
+                                                    fileOut << vecStud[i].get_fname() << " " << vecStud[i].get_lname() << endl;
+                                                j++;
+                                            }
+                                            i++;
+                                        }
+                                        fileOut.close();
+                                    }
+                                } else if ((sumchoice - 1) == schedule.size()) {
+                                    exportToFile();
                                 }
-                                fileOut.close();
-                            }
-                        } else if ((sumchoice - 1) == schedule.size()) {
-                            exportToFile();
+                                while (leave != 'Y' && leave != 'y' && leave != 'n' && leave != 'N') {
+                                    cout << "Do you want to return to the menu(y/n)?:";
+                                    cin >> leave;
+                                    if (leave != 'Y' && leave != 'y' && leave != 'n' && leave != 'N')
+                                        cout << "Invalid choice, either enter \'y\' for yes or \'n\' for no." << endl;
+                                }
+                            } else
+                                cout << "Invalid course selection." << endl;
                         }
-                        while (leave != 'Y' && leave != 'y' && leave != 'n' && leave != 'N') {
-                            cout << "Do you want to return to the menu(y/n)?:";
-                            cin >> leave;
-                            if (leave != 'Y' && leave != 'y' && leave != 'n' && leave != 'N')
-                                cout << "Invalid choice, either enter \'y\' for yes or \'n\' for no." << endl;
-                        }
-                    } else
-                        cout << "Invalid course selection." << endl;
-                }
-                break;
-            case 3:
-                break;
-            default:
-                cout << "Invalid choice pick again." << endl;
-                break;
+                    }
+                    break;
+                case 3:
+                    break;
+                default:
+                    cout << "Invalid choice pick again." << endl;
+                    break;
+            }
         }
     }
     cout << "Press any alpha numeric key followed by enter to continue...";
@@ -511,16 +544,25 @@ void Teacher::saLary() {
 void Student::menu() {
     system("cls");
     int choice = 0;
-    cout << "Welcome " << get_fname() << ", to Elite University" << endl;
+    string selection, pause;
     while (choice != 4) {
         system("cls");
+        cout << "Welcome " << get_fname() << endl;
         cout << "Choose an operation" << endl <<
                 "1. Course Enrollment" << endl <<
                 "2. Tuition" << endl <<
                 "3. Enrollment Summary" << endl <<
                 "4. Logout" << endl;
-        cin >> choice;
-        operation(choice);
+        fflush(stdin);
+        getline(cin, selection, '\n');
+        if (isalpha(selection[0])) {
+            cout << "Invalid input. You need to select an integer." << endl <<
+                    "Press any alpha numeric key followed by enter to continue...";
+            cin >> pause;
+        } else {
+            choice = stoi(selection);
+            operation(choice);
+        }
     }
 }
 
@@ -531,6 +573,7 @@ void Student::operation(int choice) {
             break;
         case 2:
             tuiTion();
+            printTuition();
             break;
         case 3:
             enrollSummary();
@@ -627,7 +670,7 @@ void Student::printTuition() {
             "Prepaid Health Fee @ $102.21 flate rate" << endl <<
             "Rec Facility Fee   @ $146.34 flate rate" << endl <<
             "Student Act. Fee   @ $169.56 flate rate" << endl <<
-            "Scholarship        @ -$" << scholarship / 2 << endl;
+            "Scholarship        @ $" << scholarship / 2 << endl;
     cout << " Tuition total is $" << tuition << endl;
     cout << "Press any alpha numeric key followed by enter to continue...";
     cin >> pause;
@@ -662,6 +705,10 @@ void Student::enrollSummary() {
             cout << "Invalid option. Try again." << endl;
             system("cls");
         }
+        cout << "Do you want to return to menu(y/n)?:";
+        cin >> choice;
+        if (choice == 'y' || choice == 'Y')
+            choice = 'n';
     }
     string pause;
     cout << "Press any alpha numeric key followed by enter to continue...";
@@ -700,21 +747,6 @@ int check_acct(string username, string password) {
         i++;
     }
     return 1;
-}
-
-Faculty find_Facacct(string username, int index) {
-    if (username == vecFac[index].get_uname())
-        return vecFac[index];
-}
-
-Teacher find_Teaacct(string username, int index) {
-    if (username == vecTeach[index].get_uname())
-        return vecTeach[index];
-}
-
-Student find_Studacct(string username, int index) {
-    if (username == vecStud[index].get_uname())
-        return vecStud[index];
 }
 
 void load_data(string filename) {
@@ -782,6 +814,7 @@ int main(int argc, char** argv) {
     string username, firstname, midname, lastname, password, psswrdcon; //define strings for names, username, and password
     char newuser = 'n', faculty = 'n', teacher = 'n', student = 'n', schchoice = 't', eXit; //sets answers to questions to no as default 
     while (!loginsuccess) { //loop for login screen. loops until successful login is achieved
+        system("cls");
         cout << "Are you an new user? (y/n):" << endl; //asks user to input whether they are a new user or not
         cin >> newuser; //reads in y/n response
         system("cls"); //clears the screen
@@ -873,7 +906,7 @@ int main(int argc, char** argv) {
                     Student temp(firstname, midname, lastname); //once you set a password, a Student class gets constructed for the current user
                     temp.set_uname(); //set user name method called to generate and set the username of the user in their instance of the class Student
                     system("cls"); //clears the screen
-                        
+
                     cout << "Your user name is:" << temp.get_uname() << endl; //tells the user their newly generated username
                     temp.setScholarship(amount);
                     temp.set_password(password); //set user name method called to generate and set the username of the user in their instance of the class Student
@@ -890,9 +923,11 @@ int main(int argc, char** argv) {
                 if ((index = check_acct(username, password)) == 1) //calls method to check for existing account
                     cout << "Username and password does not match." << endl; //tells user if existing username and password do not match records
                 cout << "Do you want to exit the program(y/n)?:";
-                    cin >> eXit;
-                    if (eXit == 'y' || eXit == 'Y')
-                        loginsuccess = true;
+                cin >> eXit;
+                if (eXit == 'y' || eXit == 'Y') {
+                    loginsuccess = true;
+                } else if (eXit == 'n' || eXit == 'N')
+                    newuser = 't';
             }
         }
     }
